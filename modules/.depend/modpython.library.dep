@@ -1,0 +1,239 @@
+modpython/_znc_core.o: modpython/_znc_core.cpp ../include/znc/zncconfig.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/Python.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/patchlevel.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pyconfig.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pymacconfig.h \
+  /usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/limits.h \
+  /usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/syslimits.h \
+  /Applications/Xcode.app/Contents/Developer/usr/llvm-gcc-4.2/lib/gcc/i686-apple-darwin11/4.2.1/include/limits.h \
+  /Applications/Xcode.app/Contents/Developer/usr/llvm-gcc-4.2/lib/gcc/i686-apple-darwin11/4.2.1/include/syslimits.h \
+  /usr/include/limits.h /usr/include/sys/cdefs.h \
+  /usr/include/sys/_symbol_aliasing.h \
+  /usr/include/sys/_posix_availability.h /usr/include/machine/limits.h \
+  /usr/include/i386/limits.h /usr/include/i386/_limits.h \
+  /usr/include/sys/syslimits.h /usr/include/stdio.h \
+  /usr/include/Availability.h /usr/include/AvailabilityInternal.h \
+  /usr/include/_types.h /usr/include/sys/_types.h \
+  /usr/include/machine/_types.h /usr/include/i386/_types.h \
+  /usr/include/string.h /usr/include/strings.h /usr/include/errno.h \
+  /usr/include/sys/errno.h /usr/include/stdlib.h /usr/include/sys/wait.h \
+  /usr/include/sys/signal.h /usr/include/sys/appleapiopts.h \
+  /usr/include/machine/signal.h /usr/include/i386/signal.h \
+  /usr/include/i386/_structs.h /usr/include/sys/_structs.h \
+  /usr/include/machine/_structs.h /usr/include/mach/i386/_structs.h \
+  /usr/include/sys/resource.h /usr/include/machine/endian.h \
+  /usr/include/i386/endian.h /usr/include/sys/_endian.h \
+  /usr/include/libkern/_OSByteOrder.h \
+  /usr/include/libkern/i386/_OSByteOrder.h /usr/include/alloca.h \
+  /usr/include/machine/types.h /usr/include/i386/types.h \
+  /usr/include/i386/_types.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/sys/select.h \
+  /usr/include/sys/_select.h /usr/include/assert.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pyport.h \
+  /usr/include/inttypes.h /usr/include/stdint.h /usr/include/math.h \
+  /usr/include/architecture/i386/math.h /usr/include/AvailabilityMacros.h \
+  /usr/include/sys/time.h /usr/include/time.h /usr/include/_structs.h \
+  /usr/include/sys/stat.h /usr/include/termios.h \
+  /usr/include/sys/termios.h /usr/include/sys/ttycom.h \
+  /usr/include/sys/ioccom.h /usr/include/sys/ttydefaults.h \
+  /usr/include/ctype.h /usr/include/runetype.h /usr/include/wctype.h \
+  /usr/include/_wctype.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pyatomic.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/dynamic_annotations.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pymath.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pytime.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pymem.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/object.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/objimpl.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/typeslots.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pydebug.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/bytearrayobject.h \
+  /usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/stdarg.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/bytesobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/unicodeobject.h \
+  /usr/include/wchar.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/longobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/longintrepr.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/boolobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/floatobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/complexobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/rangeobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/memoryobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/tupleobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/listobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/dictobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/enumobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/setobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/methodobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/moduleobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/funcobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/classobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/fileobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pycapsule.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/traceback.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/sliceobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/cellobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/iterobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/genobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/descrobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/warnings.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/weakrefobject.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/structseq.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/accu.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/codecs.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pyerrors.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pystate.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pyarena.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/modsupport.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pythonrun.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/ceval.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/sysmodule.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/intrcheck.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/import.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/abstract.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/bltinmodule.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/compile.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/code.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/eval.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pyctype.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pystrtod.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pystrcmp.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/dtoa.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/fileutils.h \
+  /usr/local/Cellar/python3/3.2.3/include/python3.2m/pyfpe.h \
+  /usr/include/c++/4.2.1/stdexcept /usr/include/c++/4.2.1/exception \
+  /usr/include/c++/4.2.1/bits/c++config.h \
+  /usr/include/c++/4.2.1/bits/os_defines.h \
+  /usr/include/c++/4.2.1/bits/cpu_defines.h /usr/include/c++/4.2.1/string \
+  /usr/include/c++/4.2.1/bits/stringfwd.h \
+  /usr/include/c++/4.2.1/bits/char_traits.h \
+  /usr/include/c++/4.2.1/cstring /usr/include/c++/4.2.1/cstddef \
+  /usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/stddef.h \
+  /usr/include/c++/4.2.1/bits/stl_algobase.h \
+  /usr/include/c++/4.2.1/climits /usr/include/c++/4.2.1/cstdlib \
+  /usr/include/c++/4.2.1/iosfwd /usr/include/c++/4.2.1/bits/c++locale.h \
+  /usr/include/c++/4.2.1/clocale /usr/include/locale.h \
+  /usr/include/_locale.h /usr/include/c++/4.2.1/cstdio \
+  /usr/include/c++/4.2.1/cstdarg /usr/include/c++/4.2.1/bits/c++io.h \
+  /usr/include/c++/4.2.1/bits/gthr.h \
+  /usr/include/c++/4.2.1/bits/gthr-default.h /usr/include/pthread.h \
+  /usr/include/pthread_impl.h /usr/include/sched.h \
+  /usr/include/c++/4.2.1/cctype /usr/include/c++/4.2.1/bits/postypes.h \
+  /usr/include/c++/4.2.1/cwchar /usr/include/c++/4.2.1/ctime \
+  /usr/include/c++/4.2.1/bits/functexcept.h \
+  /usr/include/c++/4.2.1/exception_defines.h \
+  /usr/include/c++/4.2.1/bits/stl_pair.h \
+  /usr/include/c++/4.2.1/bits/cpp_type_traits.h \
+  /usr/include/c++/4.2.1/ext/type_traits.h /usr/include/c++/4.2.1/utility \
+  /usr/include/c++/4.2.1/bits/stl_relops.h \
+  /usr/include/c++/4.2.1/bits/stl_iterator_base_types.h \
+  /usr/include/c++/4.2.1/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/4.2.1/bits/concept_check.h \
+  /usr/include/c++/4.2.1/bits/stl_iterator.h \
+  /usr/include/c++/4.2.1/debug/debug.h /usr/include/c++/4.2.1/memory \
+  /usr/include/c++/4.2.1/bits/allocator.h \
+  /usr/include/c++/4.2.1/bits/c++allocator.h \
+  /usr/include/c++/4.2.1/ext/new_allocator.h /usr/include/c++/4.2.1/new \
+  /usr/include/c++/4.2.1/bits/stl_construct.h \
+  /usr/include/c++/4.2.1/bits/stl_uninitialized.h \
+  /usr/include/c++/4.2.1/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/4.2.1/limits \
+  /usr/include/c++/4.2.1/bits/ostream_insert.h \
+  /usr/include/c++/4.2.1/bits/stl_function.h \
+  /usr/include/c++/4.2.1/bits/basic_string.h \
+  /usr/include/c++/4.2.1/ext/atomicity.h \
+  /usr/include/c++/4.2.1/bits/atomic_word.h \
+  /usr/include/c++/4.2.1/algorithm /usr/include/c++/4.2.1/bits/stl_algo.h \
+  /usr/include/c++/4.2.1/bits/stl_heap.h \
+  /usr/include/c++/4.2.1/bits/stl_tempbuf.h \
+  /usr/include/c++/4.2.1/bits/basic_string.tcc \
+  ../include/../include/znc/Utils.h ../include/znc/zncconfig.h \
+  ../include/znc/ZNCString.h /usr/include/c++/4.2.1/map \
+  /usr/include/c++/4.2.1/bits/stl_tree.h \
+  /usr/include/c++/4.2.1/bits/stl_map.h \
+  /usr/include/c++/4.2.1/bits/stl_multimap.h /usr/include/c++/4.2.1/set \
+  /usr/include/c++/4.2.1/bits/stl_set.h \
+  /usr/include/c++/4.2.1/bits/stl_multiset.h \
+  /usr/include/c++/4.2.1/vector /usr/include/c++/4.2.1/bits/stl_vector.h \
+  /usr/include/c++/4.2.1/bits/stl_bvector.h \
+  /usr/include/c++/4.2.1/bits/vector.tcc /usr/include/c++/4.2.1/list \
+  /usr/include/c++/4.2.1/bits/stl_list.h \
+  /usr/include/c++/4.2.1/bits/list.tcc /usr/include/sys/types.h \
+  /usr/include/fcntl.h /usr/include/sys/fcntl.h /usr/include/sys/file.h \
+  /usr/include/sys/queue.h /usr/include/openssl/blowfish.h \
+  /usr/include/openssl/e_os2.h /usr/include/openssl/opensslconf.h \
+  /usr/include/openssl/md5.h ../include/../include/znc/Config.h \
+  ../include/../include/znc/Socket.h ../include/znc/Csocket.h \
+  ../include/znc/defines.h ../include/znc/ZNCDebug.h \
+  /usr/include/c++/4.2.1/iostream /usr/include/c++/4.2.1/ostream \
+  /usr/include/c++/4.2.1/ios /usr/include/c++/4.2.1/bits/localefwd.h \
+  /usr/include/c++/4.2.1/bits/ios_base.h \
+  /usr/include/c++/4.2.1/bits/locale_classes.h \
+  /usr/include/c++/4.2.1/streambuf \
+  /usr/include/c++/4.2.1/bits/streambuf.tcc \
+  /usr/include/c++/4.2.1/bits/basic_ios.h \
+  /usr/include/c++/4.2.1/bits/streambuf_iterator.h \
+  /usr/include/c++/4.2.1/bits/locale_facets.h \
+  /usr/include/c++/4.2.1/cwctype /usr/include/c++/4.2.1/bits/ctype_base.h \
+  /usr/include/c++/4.2.1/bits/ctype_inline.h \
+  /usr/include/c++/4.2.1/bits/codecvt.h \
+  /usr/include/c++/4.2.1/bits/time_members.h \
+  /usr/include/c++/4.2.1/bits/messages_members.h \
+  /usr/include/c++/4.2.1/bits/basic_ios.tcc \
+  /usr/include/c++/4.2.1/bits/ostream.tcc /usr/include/c++/4.2.1/locale \
+  /usr/include/c++/4.2.1/bits/locale_facets.tcc \
+  /usr/include/c++/4.2.1/typeinfo /usr/include/c++/4.2.1/istream \
+  /usr/include/c++/4.2.1/bits/istream.tcc /usr/include/c++/4.2.1/sstream \
+  /usr/include/c++/4.2.1/bits/sstream.tcc /usr/include/c++/4.2.1/iomanip \
+  /usr/include/c++/4.2.1/functional /usr/include/netinet/in.h \
+  /usr/include/sys/socket.h /usr/include/machine/_param.h \
+  /usr/include/i386/_param.h /usr/include/netinet6/in6.h \
+  /usr/include/arpa/inet.h /usr/include/sys/ioctl.h \
+  /usr/include/sys/filio.h /usr/include/sys/sockio.h /usr/include/netdb.h \
+  /usr/include/openssl/ssl.h /usr/include/openssl/comp.h \
+  /usr/include/openssl/crypto.h /usr/include/openssl/stack.h \
+  /usr/include/openssl/safestack.h /usr/include/openssl/opensslv.h \
+  /usr/include/openssl/ossl_typ.h /usr/include/openssl/symhacks.h \
+  /usr/include/openssl/bio.h /usr/include/openssl/x509.h \
+  /usr/include/openssl/buffer.h /usr/include/openssl/evp.h \
+  /usr/include/openssl/objects.h /usr/include/openssl/obj_mac.h \
+  /usr/include/openssl/asn1.h /usr/include/openssl/bn.h \
+  /usr/include/openssl/ec.h /usr/include/openssl/ecdsa.h \
+  /usr/include/openssl/ecdh.h /usr/include/openssl/rsa.h \
+  /usr/include/openssl/dsa.h /usr/include/openssl/dh.h \
+  /usr/include/openssl/sha.h /usr/include/openssl/x509_vfy.h \
+  /usr/include/openssl/lhash.h /usr/include/openssl/pkcs7.h \
+  /usr/include/openssl/pem.h /usr/include/openssl/pem2.h \
+  /usr/include/openssl/hmac.h /usr/include/openssl/kssl.h \
+  /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
+  /usr/include/openssl/pq_compat.h /usr/include/openssl/tls1.h \
+  /usr/include/openssl/dtls1.h /usr/include/openssl/pqueue.h \
+  /usr/include/openssl/ssl23.h /usr/include/openssl/err.h \
+  /usr/include/openssl/rand.h ../include/../include/znc/Modules.h \
+  ../include/znc/WebModules.h ../include/znc/Template.h \
+  ../include/znc/Utils.h ../include/znc/HTTPSock.h \
+  ../include/znc/Socket.h ../include/znc/main.h \
+  /usr/include/c++/4.2.1/queue /usr/include/c++/4.2.1/deque \
+  /usr/include/c++/4.2.1/bits/stl_deque.h \
+  /usr/include/c++/4.2.1/bits/deque.tcc \
+  /usr/include/c++/4.2.1/bits/stl_queue.h \
+  ../include/../include/znc/Nick.h ../include/../include/znc/Chan.h \
+  ../include/znc/Nick.h ../include/znc/Buffer.h \
+  ../include/../include/znc/User.h ../include/../include/znc/IRCNetwork.h \
+  ../include/znc/znc.h ../include/znc/Client.h ../include/znc/Modules.h \
+  ../include/znc/Listener.h ../include/../include/znc/Client.h \
+  ../include/../include/znc/IRCSock.h \
+  ../include/../include/znc/Listener.h \
+  ../include/../include/znc/HTTPSock.h \
+  ../include/../include/znc/Template.h \
+  ../include/../include/znc/WebModules.h ../include/../include/znc/znc.h \
+  ../include/../include/znc/Server.h \
+  ../include/../include/znc/ZNCString.h \
+  ../include/../include/znc/FileUtils.h /usr/include/dirent.h \
+  /usr/include/sys/dirent.h ../include/../include/znc/ZNCDebug.h \
+  ../include/../include/znc/ExecSock.h /usr/include/signal.h \
+  ../include/../include/znc/Buffer.h modpython/module.h \
+  modpython/retstring.h \
+  /usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/float.h \
+  /usr/include/c++/4.2.1/iterator \
+  /usr/include/c++/4.2.1/bits/stream_iterator.h

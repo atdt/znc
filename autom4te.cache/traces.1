@@ -1,0 +1,654 @@
+m4trace:/usr/local/share/aclocal/pkg.m4:47: -1- AC_DEFUN([PKG_PROG_PKG_CONFIG], [m4_pattern_forbid([^_?PKG_[A-Z_]+$])
+m4_pattern_allow([^PKG_CONFIG(_PATH)?$])
+AC_ARG_VAR([PKG_CONFIG], [path to pkg-config utility])
+AC_ARG_VAR([PKG_CONFIG_PATH], [directories to add to pkg-config's search path])
+AC_ARG_VAR([PKG_CONFIG_LIBDIR], [path overriding pkg-config's built-in search path])
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	AC_PATH_TOOL([PKG_CONFIG], [pkg-config])
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=m4_default([$1], [0.9.0])
+	AC_MSG_CHECKING([pkg-config is at least version $_pkg_min_version])
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		AC_MSG_RESULT([yes])
+	else
+		AC_MSG_RESULT([no])
+		PKG_CONFIG=""
+	fi
+fi[]dnl
+])
+m4trace:/usr/local/share/aclocal/pkg.m4:66: -1- AC_DEFUN([PKG_CHECK_EXISTS], [AC_REQUIRE([PKG_PROG_PKG_CONFIG])dnl
+if test -n "$PKG_CONFIG" && \
+    AC_RUN_LOG([$PKG_CONFIG --exists --print-errors "$1"]); then
+  m4_default([$2], [:])
+m4_ifvaln([$3], [else
+  $3])dnl
+fi])
+m4trace:/usr/local/share/aclocal/pkg.m4:91: -1- AC_DEFUN([_PKG_SHORT_ERRORS_SUPPORTED], [AC_REQUIRE([PKG_PROG_PKG_CONFIG])
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi[]dnl
+])
+m4trace:/usr/local/share/aclocal/pkg.m4:157: -1- AC_DEFUN([PKG_CHECK_MODULES], [AC_REQUIRE([PKG_PROG_PKG_CONFIG])dnl
+AC_ARG_VAR([$1][_CFLAGS], [C compiler flags for $1, overriding pkg-config])dnl
+AC_ARG_VAR([$1][_LIBS], [linker flags for $1, overriding pkg-config])dnl
+
+pkg_failed=no
+AC_MSG_CHECKING([for $1])
+
+_PKG_CONFIG([$1][_CFLAGS], [cflags], [$2])
+_PKG_CONFIG([$1][_LIBS], [libs], [$2])
+
+m4_define([_PKG_TEXT], [Alternatively, you may set the environment variables $1[]_CFLAGS
+and $1[]_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.])
+
+if test $pkg_failed = yes; then
+   	AC_MSG_RESULT([no])
+        _PKG_SHORT_ERRORS_SUPPORTED
+        if test $_pkg_short_errors_supported = yes; then
+	        $1[]_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "$2" 2>&1`
+        else 
+	        $1[]_PKG_ERRORS=`$PKG_CONFIG --print-errors "$2" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$$1[]_PKG_ERRORS" >&AS_MESSAGE_LOG_FD
+
+	m4_default([$4], [AC_MSG_ERROR(
+[Package requirements ($2) were not met:
+
+$$1_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+_PKG_TEXT])dnl
+        ])
+elif test $pkg_failed = untried; then
+     	AC_MSG_RESULT([no])
+	m4_default([$4], [AC_MSG_FAILURE(
+[The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+_PKG_TEXT
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.])dnl
+        ])
+else
+	$1[]_CFLAGS=$pkg_cv_[]$1[]_CFLAGS
+	$1[]_LIBS=$pkg_cv_[]$1[]_LIBS
+        AC_MSG_RESULT([yes])
+	$3
+fi[]dnl
+])
+m4trace:m4/ac_pkg_swig.m4:101: -1- AC_DEFUN([AC_PROG_SWIG], [
+	SWIG_ERROR=""
+	AC_PATH_PROGS([SWIG],[swig swig2.0])
+	if test -z "$SWIG" ; then
+dnl		AC_MSG_WARN([cannot find 'swig' program. You should look at http://www.swig.org])
+		SWIG_ERROR='SWIG is not installed. You should look at http://www.swig.org'
+	elif test -n "$1" ; then
+		AC_MSG_CHECKING([for SWIG version])
+		[swig_version=`$SWIG -version 2>&1 | grep 'SWIG Version' | sed 's/.*\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*/\1/g'`]
+		AC_MSG_RESULT([$swig_version])
+		if test -n "$swig_version" ; then
+			# Calculate the required version number components
+			[required=$1]
+			[required_major=`echo $required | sed 's/[^0-9].*//'`]
+			if test -z "$required_major" ; then
+				[required_major=0]
+			fi
+			[required=`echo $required | sed 's/[0-9]*[^0-9]//'`]
+			[required_minor=`echo $required | sed 's/[^0-9].*//'`]
+			if test -z "$required_minor" ; then
+				[required_minor=0]
+			fi
+			[required=`echo $required | sed 's/[0-9]*[^0-9]//'`]
+			[required_patch=`echo $required | sed 's/[^0-9].*//'`]
+			if test -z "$required_patch" ; then
+				[required_patch=0]
+			fi
+			# Calculate the available version number components
+			[available=$swig_version]
+			[available_major=`echo $available | sed 's/[^0-9].*//'`]
+			if test -z "$available_major" ; then
+				[available_major=0]
+			fi
+			[available=`echo $available | sed 's/[0-9]*[^0-9]//'`]
+			[available_minor=`echo $available | sed 's/[^0-9].*//'`]
+			if test -z "$available_minor" ; then
+				[available_minor=0]
+			fi
+			[available=`echo $available | sed 's/[0-9]*[^0-9]//'`]
+			[available_patch=`echo $available | sed 's/[^0-9].*//'`]
+			if test -z "$available_patch" ; then
+				[available_patch=0]
+			fi
+			if test $available_major -lt $required_major; then
+				SWIG_ERROR='SWIG version >= $1 is required.  You have '"$swig_version"'.  You should look at http://www.swig.org'
+			elif test $available_major -eq $required_major; then
+				if test $available_minor -lt $required_minor; then
+					SWIG_ERROR='SWIG version >= $1 is required.  You have '"$swig_version"'.  You should look at http://www.swig.org'
+				elif test $available_minor -eq $required_minor; then
+					if test $available_patch -lt $required_patch; then
+						SWIG_ERROR='SWIG version >= $1 is required.  You have '"$swig_version"'.  You should look at http://www.swig.org'
+					fi
+				fi
+			fi
+			if test -z "$SWIG_ERROR"; then
+				AC_MSG_NOTICE([SWIG executable is '$SWIG'])
+				SWIG_LIB=`$SWIG -swiglib`
+				AC_MSG_NOTICE([SWIG library directory is '$SWIG_LIB'])
+			else
+				SWIG=""
+			fi
+		else
+			SWIG_ERROR='Cannot determine SWIG version.  You should look at http://www.swig.org'
+			SWIG=""
+		fi
+	fi
+	AC_SUBST([SWIG_LIB])
+])
+m4trace:m4/ac_pkg_swig.m4:110: -1- AC_DEFUN([SWIG_ENABLE_CXX], [
+    AC_REQUIRE([AC_PROG_SWIG])
+    AC_REQUIRE([AC_PROG_CXX])
+    SWIG="$SWIG -c++"
+])
+m4trace:m4/ac_pkg_swig.m4:123: -1- AC_DEFUN([SWIG_MULTI_MODULE_SUPPORT], [
+    AC_REQUIRE([AC_PROG_SWIG])
+    SWIG="$SWIG -noruntime"
+])
+m4trace:m4/ac_pkg_swig.m4:143: -1- AC_DEFUN([SWIG_PYTHON], [
+    AC_REQUIRE([AC_PROG_SWIG])
+    AC_REQUIRE([AC_PYTHON_DEVEL])
+    test "x$1" != "xno" || swig_shadow=" -noproxy"
+    AC_SUBST([SWIG_PYTHON_OPT],[-python$swig_shadow])
+    AC_SUBST([SWIG_PYTHON_CPPFLAGS],[$PYTHON_CPPFLAGS])
+])
+m4trace:m4/ax_pthread.m4:87: -1- AU_DEFUN([ACX_PTHREAD], [m4_if($#, 0, [AX_PTHREAD], [AX_PTHREAD($@)])])
+m4trace:m4/ax_pthread.m4:87: -1- AC_DEFUN([ACX_PTHREAD], [AC_DIAGNOSE([obsolete], [The macro `ACX_PTHREAD' is obsolete.
+You should run autoupdate.])dnl
+m4_if($#, 0, [AX_PTHREAD], [AX_PTHREAD($@)])])
+m4trace:m4/ax_pthread.m4:310: -1- AC_DEFUN([AX_PTHREAD], [
+AC_REQUIRE([AC_CANONICAL_HOST])
+AC_LANG_PUSH([C++])
+ax_pthread_ok=no
+
+# We used to check for pthread.h first, but this fails if pthread.h
+# requires special compiler flags (e.g. on True64 or Sequent).
+# It gets checked for in the link test anyway.
+
+# First of all, check if the user has set any of the PTHREAD_LIBS,
+# etcetera environment variables, and if threads linking works using
+# them:
+if test x"$PTHREAD_LIBS$PTHREAD_CFLAGS" != x; then
+        save_CXXFLAGS="$CXXFLAGS"
+        CXXFLAGS="$CXXFLAGS $PTHREAD_CFLAGS"
+        save_LIBS="$LIBS"
+        LIBS="$PTHREAD_LIBS $LIBS"
+        AC_MSG_CHECKING([for pthread_join in LIBS=$PTHREAD_LIBS with CXXFLAGS=$PTHREAD_CFLAGS])
+        AC_TRY_LINK_FUNC(pthread_join, ax_pthread_ok=yes)
+        AC_MSG_RESULT($ax_pthread_ok)
+        if test x"$ax_pthread_ok" = xno; then
+                PTHREAD_LIBS=""
+                PTHREAD_CFLAGS=""
+        fi
+        LIBS="$save_LIBS"
+        CXXFLAGS="$save_CXXFLAGS"
+fi
+
+# We must check for the threads library under a number of different
+# names; the ordering is very important because some systems
+# (e.g. DEC) have both -lpthread and -lpthreads, where one of the
+# libraries is broken (non-POSIX).
+
+# Create a list of thread flags to try.  Items starting with a "-" are
+# C compiler flags, and other items are library names, except for "none"
+# which indicates that we try without any flags at all, and "pthread-config"
+# which is a program returning the flags for the Pth emulation library.
+
+ax_pthread_flags="pthreads none -Kthread -kthread lthread -pthread -pthreads -mthreads pthread --thread-safe -mt pthread-config"
+
+# The ordering *is* (sometimes) important.  Some notes on the
+# individual items follow:
+
+# pthreads: AIX (must check this before -lpthread)
+# none: in case threads are in libc; should be tried before -Kthread and
+#       other compiler flags to prevent continual compiler warnings
+# -Kthread: Sequent (threads in libc, but -Kthread needed for pthread.h)
+# -kthread: FreeBSD kernel threads (preferred to -pthread since SMP-able)
+# lthread: LinuxThreads port on FreeBSD (also preferred to -pthread)
+# -pthread: Linux/gcc (kernel threads), BSD/gcc (userland threads)
+# -pthreads: Solaris/gcc
+# -mthreads: Mingw32/gcc, Lynx/gcc
+# -mt: Sun Workshop C (may only link SunOS threads [-lthread], but it
+#      doesn't hurt to check since this sometimes defines pthreads too;
+#      also defines -D_REENTRANT)
+#      ... -mt is also the pthreads flag for HP/aCC
+# pthread: Linux, etcetera
+# --thread-safe: KAI C++
+# pthread-config: use pthread-config program (for GNU Pth library)
+
+case "${host_cpu}-${host_os}" in
+        *solaris*)
+
+        # On Solaris (at least, for some versions), libc contains stubbed
+        # (non-functional) versions of the pthreads routines, so link-based
+        # tests will erroneously succeed.  (We need to link with -pthreads/-mt/
+        # -lpthread.)  (The stubs are missing pthread_cleanup_push, or rather
+        # a function called by this macro, so we could check for that, but
+        # who knows whether they'll stub that too in a future libc.)  So,
+        # we'll just look for -pthreads and -lpthread first:
+
+        ax_pthread_flags="-pthreads pthread -mt -pthread $ax_pthread_flags"
+        ;;
+
+        *-darwin*)
+        ax_pthread_flags="-pthread $ax_pthread_flags"
+        ;;
+esac
+
+if test x"$ax_pthread_ok" = xno; then
+for flag in $ax_pthread_flags; do
+
+        case $flag in
+                none)
+                AC_MSG_CHECKING([whether pthreads work without any flags])
+                ;;
+
+                -*)
+                AC_MSG_CHECKING([whether pthreads work with $flag])
+                PTHREAD_CFLAGS="$flag"
+                PTHREAD_LIBS="$flag"
+                ;;
+
+                pthread-config)
+                AC_CHECK_PROG(ax_pthread_config, pthread-config, yes, no)
+                if test x"$ax_pthread_config" = xno; then continue; fi
+                PTHREAD_CFLAGS="`pthread-config --cflags`"
+                PTHREAD_LIBS="`pthread-config --ldflags` `pthread-config --libs`"
+                ;;
+
+                *)
+                AC_MSG_CHECKING([for the pthreads library -l$flag])
+                PTHREAD_LIBS="-l$flag"
+                ;;
+        esac
+
+        save_LIBS="$LIBS"
+        save_CXXFLAGS="$CXXFLAGS"
+        LIBS="$PTHREAD_LIBS $LIBS"
+        CXXFLAGS="$CXXFLAGS $PTHREAD_CFLAGS"
+
+        # Check for various functions.  We must include pthread.h,
+        # since some functions may be macros.  (On the Sequent, we
+        # need a special flag -Kthread to make this header compile.)
+        # We check for pthread_join because it is in -lpthread on IRIX
+        # while pthread_create is in libc.  We check for pthread_attr_init
+        # due to DEC craziness with -lpthreads.  We check for
+        # pthread_cleanup_push because it is one of the few pthread
+        # functions on Solaris that doesn't have a non-functional libc stub.
+        # We try pthread_create on general principles.
+        AC_LINK_IFELSE([AC_LANG_PROGRAM([#include <pthread.h>
+                        static void routine(void *a) { *((int*)a) = 42; }
+                        static void *start_routine(void *a) { return a; }],
+                       [pthread_t th; pthread_attr_t attr;
+                        pthread_create(&th, 0, start_routine, 0);
+                        pthread_join(th, 0);
+                        pthread_attr_init(&attr);
+                        pthread_cleanup_push(routine, 0);
+                        pthread_cleanup_pop(0) /* ; */])],
+                [ax_pthread_ok=yes],
+                [])
+
+        LIBS="$save_LIBS"
+        CXXFLAGS="$save_CXXFLAGS"
+
+        AC_MSG_RESULT($ax_pthread_ok)
+        if test "x$ax_pthread_ok" = xyes; then
+                break;
+        fi
+
+        PTHREAD_LIBS=""
+        PTHREAD_CFLAGS=""
+done
+fi
+
+# Various other checks:
+if test "x$ax_pthread_ok" = xyes; then
+        save_LIBS="$LIBS"
+        LIBS="$PTHREAD_LIBS $LIBS"
+        save_CXXFLAGS="$CXXFLAGS"
+        CXXFLAGS="$CXXFLAGS $PTHREAD_CFLAGS"
+
+        # Detect AIX lossage: JOINABLE attribute is called UNDETACHED.
+        AC_MSG_CHECKING([for joinable pthread attribute])
+        attr_name=unknown
+        for attr in PTHREAD_CREATE_JOINABLE PTHREAD_CREATE_UNDETACHED; do
+            AC_LINK_IFELSE([AC_LANG_PROGRAM([#include <pthread.h>],
+                           [int attr = $attr; return attr /* ; */])],
+                [attr_name=$attr; break],
+                [])
+        done
+        AC_MSG_RESULT($attr_name)
+        if test "$attr_name" != PTHREAD_CREATE_JOINABLE; then
+            AC_DEFINE_UNQUOTED(PTHREAD_CREATE_JOINABLE, $attr_name,
+                               [Define to necessary symbol if this constant
+                                uses a non-standard name on your system.])
+        fi
+
+        AC_MSG_CHECKING([if more special flags are required for pthreads])
+        flag=no
+        case "${host_cpu}-${host_os}" in
+            *-aix* | *-freebsd* | *-darwin*) flag="-D_THREAD_SAFE";;
+            *-osf* | *-hpux*) flag="-D_REENTRANT";;
+            *solaris*)
+            if test "$GCC" = "yes"; then
+                flag="-D_REENTRANT"
+            else
+                flag="-mt -D_REENTRANT"
+            fi
+            ;;
+        esac
+        AC_MSG_RESULT(${flag})
+        if test "x$flag" != xno; then
+            PTHREAD_CFLAGS="$flag $PTHREAD_CFLAGS"
+        fi
+
+        AC_CACHE_CHECK([for PTHREAD_PRIO_INHERIT],
+            ax_cv_PTHREAD_PRIO_INHERIT, [
+                AC_LINK_IFELSE([
+                    AC_LANG_PROGRAM([[#include <pthread.h>]], [[int i = PTHREAD_PRIO_INHERIT;]])],
+                    [ax_cv_PTHREAD_PRIO_INHERIT=yes],
+                    [ax_cv_PTHREAD_PRIO_INHERIT=no])
+            ])
+        AS_IF([test "x$ax_cv_PTHREAD_PRIO_INHERIT" = "xyes"],
+            AC_DEFINE([HAVE_PTHREAD_PRIO_INHERIT], 1, [Have PTHREAD_PRIO_INHERIT.]))
+
+        LIBS="$save_LIBS"
+        CXXFLAGS="$save_CXXFLAGS"
+
+        # More AIX lossage: must compile with xlc_r or cc_r
+        if test x"$GCC" != xyes; then
+          AC_CHECK_PROGS(PTHREAD_CC, xlc_r cc_r, ${CC})
+        else
+          PTHREAD_CC=$CC
+        fi
+else
+        PTHREAD_CC="$CC"
+fi
+
+AC_SUBST(PTHREAD_LIBS)
+AC_SUBST(PTHREAD_CFLAGS)
+AC_SUBST(PTHREAD_CC)
+
+# Finally, execute ACTION-IF-FOUND/ACTION-IF-NOT-FOUND:
+if test x"$ax_pthread_ok" = xyes; then
+        ifelse([$1],,AC_DEFINE(HAVE_PTHREAD,1,[Define if you have POSIX threads libraries and header files.]),[$1])
+        :
+else
+        ax_pthread_ok=no
+        $2
+fi
+AC_LANG_POP
+])
+m4trace:m4/znc_visibility.m4:88: -1- AC_DEFUN([ZNC_VISIBILITY], [
+  AC_REQUIRE([AC_PROG_CXX])
+  AC_LANG_PUSH([C++])
+  CFLAG_VISIBILITY=
+  HAVE_VISIBILITY=0
+  if test -n "$GXX"; then
+    dnl First, check whether -Werror can be added to the command line, or
+    dnl whether it leads to an error because of some other option that the
+    dnl user has put into $CC $CFLAGS $CPPFLAGS.
+    AC_MSG_CHECKING([whether the -Werror option is usable])
+    AC_CACHE_VAL([znc_cv_cc_vis_werror], [
+      znc_save_CXXFLAGS="$CXXFLAGS"
+      CXXFLAGS="$CXXFLAGS -Werror"
+      AC_COMPILE_IFELSE([AC_LANG_PROGRAM([], [])],
+        [znc_cv_cc_vis_werror=yes],
+        [znc_cv_cc_vis_werror=no])
+      CXXFLAGS="$znc_save_CXXFLAGS"])
+    AC_MSG_RESULT([$znc_cv_cc_vis_werror])
+    dnl Now check whether visibility declarations are supported.
+    AC_MSG_CHECKING([for simple visibility declarations])
+    AC_CACHE_VAL([znc_cv_cc_visibility], [
+      znc_save_CXXFLAGS="$CXXFLAGS"
+      CXXFLAGS="$CXXFLAGS -fvisibility=hidden"
+      dnl We use the option -Werror and a function dummyfunc, because on some
+      dnl platforms (Cygwin 1.7) the use of -fvisibility triggers a warning
+      dnl "visibility attribute not supported in this configuration; ignored"
+      dnl at the first function definition in every compilation unit, and we
+      dnl don't want to use the option in this case.
+      if test $znc_cv_cc_vis_werror = yes; then
+        CXXFLAGS="$CXXFLAGS -Werror"
+      fi
+      AC_COMPILE_IFELSE([AC_LANG_PROGRAM(
+       [[extern __attribute__((__visibility__("hidden"))) int hiddenvar;
+         extern __attribute__((__visibility__("default"))) int exportedvar;
+         extern __attribute__((__visibility__("hidden"))) int hiddenfunc (void);
+         extern __attribute__((__visibility__("default"))) int exportedfunc (void);
+         void dummyfunc (void);
+         void dummyfunc (void) {}]],
+        [])],
+        [znc_cv_cc_visibility=yes],
+        [znc_cv_cc_visibility=no])
+      CXXFLAGS="$znc_save_CXXFLAGS"])
+    AC_MSG_RESULT([$znc_cv_cc_visibility])
+    if test $znc_cv_cc_visibility = yes; then
+      CFLAG_VISIBILITY="-fvisibility=hidden"
+      HAVE_VISIBILITY=1
+    fi
+  fi
+  AC_SUBST([CFLAG_VISIBILITY])
+  AC_SUBST([HAVE_VISIBILITY])
+  AC_DEFINE_UNQUOTED([HAVE_VISIBILITY], [$HAVE_VISIBILITY],
+    [Define to 1 or 0, depending whether the compiler supports simple visibility declarations.])
+  AC_LANG_POP
+])
+m4trace:configure.ac:5: -1- AC_DEFUN([AC_PROG_CC], [m4_errprint(__file__:__line__[: Something is trying to use the C compiler. Since this is a C++ project, this should not happen!
+])m4_exit(1)])
+m4trace:configure.ac:10: -1- m4_pattern_forbid([^_?A[CHUM]_])
+m4trace:configure.ac:10: -1- m4_pattern_forbid([_AC_])
+m4trace:configure.ac:10: -1- m4_pattern_forbid([^LIBOBJS$], [do not use LIBOBJS directly, use AC_LIBOBJ (see section `AC_LIBOBJ vs LIBOBJS'])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^AS_FLAGS$])
+m4trace:configure.ac:10: -1- m4_pattern_forbid([^_?m4_])
+m4trace:configure.ac:10: -1- m4_pattern_forbid([^dnl$])
+m4trace:configure.ac:10: -1- m4_pattern_forbid([^_?AS_])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^SHELL$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^PATH_SEPARATOR$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^PACKAGE_NAME$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^PACKAGE_TARNAME$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^PACKAGE_VERSION$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^PACKAGE_STRING$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^PACKAGE_BUGREPORT$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^PACKAGE_URL$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^exec_prefix$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^prefix$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^program_transform_name$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^bindir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^sbindir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^libexecdir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^datarootdir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^datadir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^sysconfdir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^sharedstatedir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^localstatedir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^includedir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^oldincludedir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^docdir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^infodir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^htmldir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^dvidir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^pdfdir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^psdir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^libdir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^localedir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^mandir$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^PACKAGE_NAME$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^PACKAGE_TARNAME$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^PACKAGE_VERSION$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^PACKAGE_STRING$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^PACKAGE_BUGREPORT$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^PACKAGE_URL$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^DEFS$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^ECHO_C$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^ECHO_N$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^ECHO_T$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^LIBS$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^build_alias$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^host_alias$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^target_alias$])
+m4trace:configure.ac:27: -1- AC_DEFUN([ZNC_AUTO_FAIL], [
+	# This looks better in the summary at the end
+	$1="not found"
+	if test "x$old_$1" != "xauto" ; then
+		AC_MSG_ERROR([$2])
+	else
+		AC_MSG_WARN([$3])
+	fi
+])
+m4trace:configure.ac:31: -1- m4_pattern_allow([^CXX$])
+m4trace:configure.ac:31: -1- m4_pattern_allow([^CXXFLAGS$])
+m4trace:configure.ac:31: -1- m4_pattern_allow([^LDFLAGS$])
+m4trace:configure.ac:31: -1- m4_pattern_allow([^LIBS$])
+m4trace:configure.ac:31: -1- m4_pattern_allow([^CPPFLAGS$])
+m4trace:configure.ac:31: -1- m4_pattern_allow([^CXX$])
+m4trace:configure.ac:31: -1- m4_pattern_allow([^ac_ct_CXX$])
+m4trace:configure.ac:31: -1- m4_pattern_allow([^EXEEXT$])
+m4trace:configure.ac:31: -1- m4_pattern_allow([^OBJEXT$])
+m4trace:configure.ac:32: -1- m4_pattern_allow([^INSTALL_PROGRAM$])
+m4trace:configure.ac:32: -1- m4_pattern_allow([^INSTALL_SCRIPT$])
+m4trace:configure.ac:32: -1- m4_pattern_allow([^INSTALL_DATA$])
+m4trace:configure.ac:33: -1- m4_pattern_allow([^GREP$])
+m4trace:configure.ac:34: -1- m4_pattern_allow([^SED$])
+m4trace:configure.ac:35: -1- m4_pattern_allow([^build$])
+m4trace:configure.ac:35: -1- m4_pattern_allow([^build_cpu$])
+m4trace:configure.ac:35: -1- m4_pattern_allow([^build_vendor$])
+m4trace:configure.ac:35: -1- m4_pattern_allow([^build_os$])
+m4trace:configure.ac:35: -1- m4_pattern_allow([^host$])
+m4trace:configure.ac:35: -1- m4_pattern_allow([^host_cpu$])
+m4trace:configure.ac:35: -1- m4_pattern_allow([^host_vendor$])
+m4trace:configure.ac:35: -1- m4_pattern_allow([^host_os$])
+m4trace:configure.ac:36: -1- m4_pattern_allow([^_FILE_OFFSET_BITS$])
+m4trace:configure.ac:36: -1- m4_pattern_allow([^_LARGE_FILES$])
+m4trace:configure.ac:37: -1- ZNC_VISIBILITY
+m4trace:configure.ac:37: -1- m4_pattern_allow([^CFLAG_VISIBILITY$])
+m4trace:configure.ac:37: -1- m4_pattern_allow([^HAVE_VISIBILITY$])
+m4trace:configure.ac:37: -1- m4_pattern_allow([^HAVE_VISIBILITY$])
+m4trace:configure.ac:143: -1- m4_pattern_allow([^RUN_FROM_SOURCE$])
+m4trace:configure.ac:154: -1- m4_pattern_allow([^_DEBUG$])
+m4trace:configure.ac:156: -1- m4_pattern_allow([^_GLIBCXX_DEBUG$])
+m4trace:configure.ac:157: -1- m4_pattern_allow([^_GLIBCXX_DEBUG_PEDANTIC$])
+m4trace:configure.ac:158: -1- m4_pattern_allow([^_GLIBCXX_CONCEPT_CHECKS$])
+m4trace:configure.ac:166: -1- m4_pattern_allow([^HAVE_IPV6$])
+m4trace:configure.ac:190: -1- m4_pattern_allow([^CSOCK_USE_POLL$])
+m4trace:configure.ac:194: -1- m4_pattern_allow([^HAVE_LIBGNUGETOPT$])
+m4trace:configure.ac:196: -1- PKG_PROG_PKG_CONFIG([])
+m4trace:configure.ac:196: -1- m4_pattern_forbid([^_?PKG_[A-Z_]+$])
+m4trace:configure.ac:196: -1- m4_pattern_allow([^PKG_CONFIG(_PATH)?$])
+m4trace:configure.ac:196: -1- m4_pattern_allow([^PKG_CONFIG$])
+m4trace:configure.ac:196: -1- m4_pattern_allow([^PKG_CONFIG_PATH$])
+m4trace:configure.ac:196: -1- m4_pattern_allow([^PKG_CONFIG_LIBDIR$])
+m4trace:configure.ac:196: -1- m4_pattern_allow([^PKG_CONFIG$])
+m4trace:configure.ac:229: -1- AX_PTHREAD([
+		AC_MSG_CHECKING([whether getaddrinfo() supports AI_ADDRCONFIG])
+		AC_COMPILE_IFELSE([
+			AC_LANG_PROGRAM([[
+				#include <sys/types.h>
+				#include <sys/socket.h>
+				#include <netdb.h>
+			]], [[
+				int x = AI_ADDRCONFIG;
+			]])
+		], [
+			AC_MSG_RESULT([yes])
+			TDNS=yes
+		], [
+			AC_MSG_RESULT([no])
+			TDNS=no
+			# Note that broken systems, such as OpenBSD, NetBSD, which don't support AI_ADDRCONFIG,
+			# also have thread-unsafe getaddrinfo().
+		])
+	], [
+		TDNS=no
+	])
+m4trace:configure.ac:229: -1- m4_pattern_allow([^ax_pthread_config$])
+m4trace:configure.ac:229: -1- m4_pattern_allow([^PTHREAD_CREATE_JOINABLE$])
+m4trace:configure.ac:229: -2- m4_pattern_allow([^HAVE_PTHREAD_PRIO_INHERIT$])
+m4trace:configure.ac:229: -1- m4_pattern_allow([^PTHREAD_CC$])
+m4trace:configure.ac:229: -1- m4_pattern_allow([^PTHREAD_LIBS$])
+m4trace:configure.ac:229: -1- m4_pattern_allow([^PTHREAD_CFLAGS$])
+m4trace:configure.ac:229: -1- m4_pattern_allow([^PTHREAD_CC$])
+m4trace:configure.ac:229: -2- m4_pattern_allow([^HAVE_PTHREAD$])
+m4trace:configure.ac:232: -1- m4_pattern_allow([^HAVE_THREADED_DNS$])
+m4trace:configure.ac:239: -1- ZNC_AUTO_FAIL([TDNS], [support for threaded DNS not found. Try --disable-tdns.
+Disabling it may result in a slight performance decrease but will not have any other side-effects], [support for threaded DNS not found, so DNS resolving will be blocking])
+m4trace:configure.ac:262: -1- PKG_CHECK_MODULES([openssl], [openssl], [
+		appendLib "$openssl_LIBS"
+		appendCXX "$openssl_CFLAGS"
+	], [
+		# Don't reorder this!
+		# On some arches libssl depends on libcrypto without linking to it :(
+		AC_CHECK_LIB( crypto, BIO_new,, SSL=no )
+		AC_CHECK_LIB( ssl, SSL_shutdown,, SSL=no )
+	])
+m4trace:configure.ac:262: -1- m4_pattern_allow([^openssl_CFLAGS$])
+m4trace:configure.ac:262: -1- m4_pattern_allow([^openssl_LIBS$])
+m4trace:configure.ac:262: -1- PKG_CHECK_EXISTS([openssl], [pkg_cv_[]openssl_CFLAGS=`$PKG_CONFIG --[]cflags "openssl" 2>/dev/null`], [pkg_failed=yes])
+m4trace:configure.ac:262: -1- PKG_CHECK_EXISTS([openssl], [pkg_cv_[]openssl_LIBS=`$PKG_CONFIG --[]libs "openssl" 2>/dev/null`], [pkg_failed=yes])
+m4trace:configure.ac:262: -1- _PKG_SHORT_ERRORS_SUPPORTED
+m4trace:configure.ac:262: -1- m4_pattern_allow([^HAVE_LIBCRYPTO$])
+m4trace:configure.ac:262: -1- m4_pattern_allow([^HAVE_LIBSSL$])
+m4trace:configure.ac:262: -1- m4_pattern_allow([^HAVE_LIBCRYPTO$])
+m4trace:configure.ac:262: -1- m4_pattern_allow([^HAVE_LIBSSL$])
+m4trace:configure.ac:267: -1- ZNC_AUTO_FAIL([SSL], [OpenSSL not found. Try --disable-openssl.], [OpenSSL was not found and thus disabled])
+m4trace:configure.ac:270: -1- m4_pattern_allow([^HAVE_LIBSSL$])
+m4trace:configure.ac:320: -1- AC_PROG_SWIG([1.3.40])
+m4trace:configure.ac:320: -1- m4_pattern_allow([^SWIG$])
+m4trace:configure.ac:320: -1- m4_pattern_allow([^SWIG_LIB$])
+m4trace:configure.ac:346: -1- m4_pattern_allow([^PERL_BINARY$])
+m4trace:configure.ac:360: -1- ZNC_AUTO_FAIL([PERL], [perl not found. Try --disable-perl.], [perl was not found and thus disabled])
+m4trace:configure.ac:376: -1- PKG_CHECK_MODULES([python], [$PYTHON >= 3.0], [], [as_fn_error $? "$PYTHON.pc not found or is wrong. Try --disable-python or install python3." "$LINENO" 5])
+m4trace:configure.ac:376: -1- m4_pattern_allow([^python_CFLAGS$])
+m4trace:configure.ac:376: -1- m4_pattern_allow([^python_LIBS$])
+m4trace:configure.ac:376: -1- PKG_CHECK_EXISTS([$PYTHON >= 3.0], [pkg_cv_[]python_CFLAGS=`$PKG_CONFIG --[]cflags "$PYTHON >= 3.0" 2>/dev/null`], [pkg_failed=yes])
+m4trace:configure.ac:376: -1- PKG_CHECK_EXISTS([$PYTHON >= 3.0], [pkg_cv_[]python_LIBS=`$PKG_CONFIG --[]libs "$PYTHON >= 3.0" 2>/dev/null`], [pkg_failed=yes])
+m4trace:configure.ac:376: -1- _PKG_SHORT_ERRORS_SUPPORTED
+m4trace:configure.ac:378: -1- PKG_CHECK_MODULES([python32], [$PYTHON >= 3.2], [PYTHON_32=yes], [PYTHON_32=no])
+m4trace:configure.ac:378: -1- m4_pattern_allow([^python32_CFLAGS$])
+m4trace:configure.ac:378: -1- m4_pattern_allow([^python32_LIBS$])
+m4trace:configure.ac:378: -1- PKG_CHECK_EXISTS([$PYTHON >= 3.2], [pkg_cv_[]python32_CFLAGS=`$PKG_CONFIG --[]cflags "$PYTHON >= 3.2" 2>/dev/null`], [pkg_failed=yes])
+m4trace:configure.ac:378: -1- PKG_CHECK_EXISTS([$PYTHON >= 3.2], [pkg_cv_[]python32_LIBS=`$PKG_CONFIG --[]libs "$PYTHON >= 3.2" 2>/dev/null`], [pkg_failed=yes])
+m4trace:configure.ac:378: -1- _PKG_SHORT_ERRORS_SUPPORTED
+m4trace:configure.ac:381: -1- AC_PROG_SWIG([2.0.4])
+m4trace:configure.ac:381: -1- m4_pattern_allow([^SWIG$])
+m4trace:configure.ac:381: -1- m4_pattern_allow([^SWIG_LIB$])
+m4trace:configure.ac:394: -1- m4_pattern_allow([^PERL_BINARY$])
+m4trace:configure.ac:406: -1- ZNC_AUTO_FAIL([PYTHON], [python not found. Try --disable-python.], [python was not found and thus disabled])
+m4trace:configure.ac:511: -1- m4_pattern_allow([^CXXFLAGS$])
+m4trace:configure.ac:512: -1- m4_pattern_allow([^CPPFLAGS$])
+m4trace:configure.ac:513: -1- m4_pattern_allow([^MODFLAGS$])
+m4trace:configure.ac:514: -1- m4_pattern_allow([^LDFLAGS$])
+m4trace:configure.ac:515: -1- m4_pattern_allow([^LIBS$])
+m4trace:configure.ac:516: -1- m4_pattern_allow([^LIBZNC$])
+m4trace:configure.ac:517: -1- m4_pattern_allow([^LIBZNCDIR$])
+m4trace:configure.ac:518: -1- m4_pattern_allow([^MODLINK$])
+m4trace:configure.ac:519: -1- m4_pattern_allow([^NOSSL$])
+m4trace:configure.ac:520: -1- m4_pattern_allow([^TCL_FLAGS$])
+m4trace:configure.ac:521: -1- m4_pattern_allow([^SASL$])
+m4trace:configure.ac:522: -1- m4_pattern_allow([^CHARSET$])
+m4trace:configure.ac:523: -1- m4_pattern_allow([^LIBICONV$])
+m4trace:configure.ac:524: -1- m4_pattern_allow([^MODDIR$])
+m4trace:configure.ac:525: -1- m4_pattern_allow([^DATADIR$])
+m4trace:configure.ac:526: -1- m4_pattern_allow([^PERL$])
+m4trace:configure.ac:527: -1- m4_pattern_allow([^PYTHON$])
+m4trace:configure.ac:528: -1- m4_pattern_allow([^SWIG$])
+m4trace:configure.ac:529: -1- m4_pattern_allow([^python_CFLAGS$])
+m4trace:configure.ac:530: -1- m4_pattern_allow([^python_LIBS$])
+m4trace:configure.ac:539: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:539: -1- m4_pattern_allow([^LTLIBOBJS$])

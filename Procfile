@@ -1,0 +1,1 @@
+znc: ./start.sh
